@@ -13,14 +13,16 @@ func main() {
 	flag.BoolVar(&r.Hidden, "d", false, "include hidden .dot files")
 	flag.BoolVar(&r.Quiet, "q", false, "be quiet")
 	flag.Parse()
-	dir := flag.Arg(0)
-	if len(dir) == 0 {
+	dirs := flag.Args()
+	if len(dirs) == 0 {
 		fmt.Printf("no directory given\n")
 		return
 	}
-	err := r.Replace(dir)
-	if err != nil {
-		fmt.Printf("error %s\n", err.Error())
-		return
+	for _, dir := range dirs {
+		err := r.Replace(dir)
+		if err != nil {
+			fmt.Printf("error %s\n", err.Error())
+			return
+		}
 	}
 }
