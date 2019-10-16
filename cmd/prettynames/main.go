@@ -10,7 +10,7 @@ import (
 func main() {
 	r := &pretty.Renamer{}
 	flag.BoolVar(&r.Dryrun, "n", false, "dry run")
-	flag.BoolVar(&r.Hidden, "h", false, "include hidden .files")
+	flag.BoolVar(&r.Hidden, "d", false, "include hidden .dot files")
 	flag.BoolVar(&r.Quiet, "q", false, "be quiet")
 	flag.Parse()
 	dir := flag.Arg(0)
