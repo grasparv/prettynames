@@ -1,4 +1,4 @@
-#!/bin/sh
 all:
-	gcc -O2 -Wall -o prettynames renamer.c
-	strip ~/bin/prettynames 
+	rm -rf testdir
+	tar xf testdir.tgz
+	go run main.go testdir
