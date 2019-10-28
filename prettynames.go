@@ -16,6 +16,7 @@ type Renamer struct {
 func makepath(prev, next string) string {
 	buf := strings.Builder{}
 	buf.WriteString(prev)
+	buf.WriteString("/")
 	buf.WriteString(next)
 	return buf.String()
 }
