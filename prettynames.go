@@ -57,32 +57,21 @@ func (r *Renamer) Replace(dir string) error {
 }
 
 func (r *Renamer) rename(dir, fname string) error {
-	b := []byte(fname)
 	modified := false
+	underscore := []string{" ", "|", "&", ";", "(", ")", "<", ">", "!", "[", "]",
+		"{", "}", ":", "?", "\\", "'", "\"", "=", "*", "/"}
+	s := fname
 
-	for i := 0; i < len(b); {
-		// strip invalid characters
-		if b[i] < 32 || (b[i] > 126 && b[i] <= 255) {
+	for _, repl := range underscore {
+		b := s
+		s = strings.ReplaceAll(s, repl, "_")
+		if b != s {
 			modified = true
-			b = append(b[:i], b[i+1:]...)
-			continue
 		}
-
-		// replace invalid characters
-		if b[i] == ' ' || b[i] == '|' || b[i] == '&' || b[i] == ';' || b[i] == '(' ||
-			b[i] == ')' || b[i] == '<' || b[i] == '>' || b[i] == '!' || b[i] == '[' ||
-			b[i] == ']' || b[i] == '{' || b[i] == '}' || b[i] == ':' || b[i] == '?' ||
-			b[i] == '\'' ||
-			b[i] == '=' || b[i] == '*' || b[i] == '/' || b[i] == '"' || b[i] == '\\' {
-			modified = true
-			b[i] = '_'
-		}
-
-		i++
 	}
 
 	if modified {
-		newname := string(b)
+		newname := s
 		newpath := makepath(dir, newname)
 		oldpath := makepath(dir, fname)
 		if r.Dryrun {
