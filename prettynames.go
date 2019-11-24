@@ -65,6 +65,7 @@ func (r *Renamer) rename(dir, fname string) error {
 	for _, repl := range underscore {
 		b := s
 		s = strings.ReplaceAll(s, repl, "_")
+		s = strings.TrimPrefix(s, "-")
 		if b != s {
 			modified = true
 		}
