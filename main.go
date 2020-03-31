@@ -4,7 +4,7 @@ import (
 	"flag"
 	"fmt"
 
-	"github.com/grasparv/prettynames"
+	"github.com/grasparv/prettynames/pretty"
 )
 
 func main() {
