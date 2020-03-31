@@ -59,7 +59,7 @@ func (r *Renamer) Replace(dir string) error {
 func (r *Renamer) rename(dir, fname string) error {
 	modified := false
 	underscore := []string{" ", "|", "&", ";", "(", ")", "<", ">", "!", "[", "]",
-		"{", "}", ":", "?", "\\", "'", "\"", "=", "*", "/"}
+		"{", "}", ":", "?", "\\", "'", "\"", "=", "*", "/", "~"}
 	s := fname
 
 	for _, repl := range underscore {
